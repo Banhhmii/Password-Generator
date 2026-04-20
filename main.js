@@ -6,7 +6,7 @@ const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
 const symbols = "!@#$%^&*()_+";
 let password = "";
-g
+
 while(pwLength != 0 && pwLength > 4) {
     let count = 0;
     for (let i = 0; i < pwLength; i++) {
