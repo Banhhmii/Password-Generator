@@ -1,14 +1,24 @@
 const prompt = require("prompt-sync")();
 
-const pwLength = parseInt(prompt("Please enter password length: "));
-const lowerCaseLetters = "abdcefghiklmnopqrstuvwxyz";
-const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const numbers = "0123456789";
-const symbols = "!@#$%^&*()_+";
-let password = "";
+function getLength() {
+    const length = parseInt(prompt("Please enter password length: "));
+    if (isNaN(length) || length < 8) {
+        console.log("Invalid input. Please enter a number greater than or equal to 8.");
+        return getLength();
+    }
+    return length;
 
-while(pwLength != 0 && pwLength > 4) {
-    let count = 0;
+}
+
+function genratePassword() {
+    const pwLength = getLength();
+
+    const lowerCaseLetters = "abdcefghiklmnopqrstuvwxyz";
+    const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    const symbols = "!@#$%^&*()_+";
+    let password = "";
+
     for (let i = 0; i < pwLength; i++) {
         let char = Math.floor(Math.random() * 4);
         if (char === 0) {
@@ -20,8 +30,15 @@ while(pwLength != 0 && pwLength > 4) {
         } else {
             password += lowerCaseLetters[Math.floor(Math.random() * lowerCaseLetters.length)];
         }
-        count++;
     }
-    break;
+
+    return password;
 }
-console.log(password);
+
+function printPassword() {
+    const password = genratePassword();
+    console.log("Generated Password: " + password);
+}
+
+
+printPassword();
